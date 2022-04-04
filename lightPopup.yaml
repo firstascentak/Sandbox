@@ -5,170 +5,170 @@
 
 popup_cards:
   light.onecontrol_kitchen_chandelier_light_dimmer:
-	title: Kitchen Island
-	style:
-	  $: |
-		.mdc-dialog .mdc-dialog__container {
-		  width: 100%;
-		}
-		.mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
-		  width:100%;
-		  box-shadow:none;
-		}
-	  .: |
-		:host {
-		  --mdc-theme-surface: rgba(0,0,0,0);
-		  --secondary-background-color: rgba(0,0,0,0);
-		  --ha-card-background: rgba(0,0,0,0);
-		  --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
-		  --mdc-dialog-min-height: 100%;
-		  --mdc-dialog-min-width: 100%;
-		  --mdc-dialog-max-width: 100%;
-		}
-		mwc-icon-button {
-		  color: #FC4445;
-		}
-	card:
-	  type: custom:light-popup-card
-	  entity: light.onecontrol_kitchen_chandelier_light_dimmer
-	  icon: fapro:duotone/light-ceiling
-	  brightnessWidth: 150px
-	  brightnessHeight: 400px
-	  switchWidth: 150px
-	  switchHeight: 400px
-	  sliderTrackColor: '#333333'
-	  sliderThumbColor: '#FC4445'
-	  color_on: '#FC4445'
+    title: Kitchen Island
+    style:
+      $: |
+        .mdc-dialog .mdc-dialog__container {
+          width: 100%;
+        }
+        .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+          width:100%;
+          box-shadow:none;
+        }
+      .: |
+        :host {
+          --mdc-theme-surface: rgba(0,0,0,0);
+          --secondary-background-color: rgba(0,0,0,0);
+          --ha-card-background: rgba(0,0,0,0);
+          --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+          --mdc-dialog-min-height: 100%;
+          --mdc-dialog-min-width: 100%;
+          --mdc-dialog-max-width: 100%;
+        }
+        mwc-icon-button {
+          color: #FC4445;
+        }
+    card:
+      type: custom:light-popup-card
+      entity: light.onecontrol_kitchen_chandelier_light_dimmer
+      icon: fapro:duotone/light-ceiling
+      brightnessWidth: 150px
+      brightnessHeight: 400px
+      switchWidth: 150px
+      switchHeight: 400px
+      sliderTrackColor: '#333333'
+      sliderThumbColor: '#FC4445'
+      color_on: '#FC4445'
 views:
   - title: Light Popup Options
-	icon: mdi:home-outline
-	panel: false
-	cards:
-		### This light is a similar popup with the new dimmer but you'll notice the button style is the Homekit style. 
-		### This does NOT require the config I mentioned above in order to get the popup working, it's built in.
-		### I just prefer my custom button rather than the homekit-card button. Functionally they are the same.
-		### I figured I'd include this option as well in case you were interested
-	  - type: custom:homekit-card
-		home: true
-		### No idea what these rules are, I pulled it from an example when I was trying to get the basic light to work
-		rules: >
-		  {% if "Vandaag" in states('sensor.blink_gft') %} <li>Vandaag groenebak
-		  aan de straat</li> {% endif %}
+    icon: mdi:home-outline
+    panel: false
+    cards:
+        ### This light is a similar popup with the new dimmer but you'll notice the button style is the Homekit style. 
+        ### This does NOT require the config I mentioned above in order to get the popup working, it's built in.
+        ### I just prefer my custom button rather than the homekit-card button. Functionally they are the same.
+        ### I figured I'd include this option as well in case you were interested
+      - type: custom:homekit-card
+        home: true
+        ### No idea what these rules are, I pulled it from an example when I was trying to get the basic light to work
+        rules: >
+          {% if "Vandaag" in states('sensor.blink_gft') %} <li>Vandaag groenebak
+          aan de straat</li> {% endif %}
 
-		  {% if "Vandaag" in states('sensor.blink_papier') %} <li>Vandaag
-		  oudpapier aan de straat</li> {% endif %}
+          {% if "Vandaag" in states('sensor.blink_papier') %} <li>Vandaag
+          oudpapier aan de straat</li> {% endif %}
 
-		  {% if "Vandaag" in states('sensor.blink_pmd') %} <li>Vandaag plastic
-		  aan de straat</li> {% endif %}
+          {% if "Vandaag" in states('sensor.blink_pmd') %} <li>Vandaag plastic
+          aan de straat</li> {% endif %}
 
-		  {% if "Vandaag" in states('sensor.blink_restafval') %} <li>Vandaag
-		  grijzebak aan de straat</li> {% endif %}
+          {% if "Vandaag" in states('sensor.blink_restafval') %} <li>Vandaag
+          grijzebak aan de straat</li> {% endif %}
 
-		  {% if states('sensor.current_lights_on') | float > 0 %}
-		  <li>{{states('sensor.current_lights_on')}} lampen aan</li> {% endif %}
+          {% if states('sensor.current_lights_on') | float > 0 %}
+          <li>{{states('sensor.current_lights_on')}} lampen aan</li> {% endif %}
 
-		  {% if states('sensor.current_media_players_on') | float > 0 %}
-		  <li>{{states('sensor.current_media_players_on')}} speakers aan</li> {%
-		  endif %}
-		title: Home
-		useBrightness: false
-		useTemperature: false
-		useRGB: false
-		titleColor: '#FFF'
-		entities:
-		  - title: Custom button testing
-			entities:
-			  - entity: light.onecontrol_kitchen_ceiling_light_dimmer
-				popup:
-				  type: custom:light-popup-card
-	  - type: vertical-stack
-		cards:
-		  - type: horizontal-stack
-			cards:
-			  - type: custom:button-card
-				entity: light.onecontrol_kitchen_ceiling_light_dimmer
-				name: Kitchen
-				icon: fapro:duotone/lightbulb
-				template: light_button
-			  - type: custom:button-card
-				entity: light.onecontrol_kitchen_chandelier_light_dimmer
-				name: Island
-				icon: fapro:duotone/light-ceiling
-				template: light_button
-			  - type: custom:button-card
-				entity: light.onecontrol_kitchen_counter_light_dimmer
-				name: Counter
-				icon: fapro:duotone/lightbulb
-				template: light_button
+          {% if states('sensor.current_media_players_on') | float > 0 %}
+          <li>{{states('sensor.current_media_players_on')}} speakers aan</li> {%
+          endif %}
+        title: Home
+        useBrightness: false
+        useTemperature: false
+        useRGB: false
+        titleColor: '#FFF'
+        entities:
+          - title: Custom button testing
+            entities:
+              - entity: light.onecontrol_kitchen_ceiling_light_dimmer
+                popup:
+                  type: custom:light-popup-card
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: light.onecontrol_kitchen_ceiling_light_dimmer
+                name: Kitchen
+                icon: fapro:duotone/lightbulb
+                template: light_button
+              - type: custom:button-card
+                entity: light.onecontrol_kitchen_chandelier_light_dimmer
+                name: Island
+                icon: fapro:duotone/light-ceiling
+                template: light_button
+              - type: custom:button-card
+                entity: light.onecontrol_kitchen_counter_light_dimmer
+                name: Counter
+                icon: fapro:duotone/lightbulb
+                template: light_button
 
 ### My buttons in the vertical stack use a template, the config for that template is listed below.
 button_card_templates:
   light_button:
-	aspect_ratio: 4/3
-	color_type: icon
-	hold_action:
-	  action: more-info
-	  haptic: selection
-	label: >
-	  [[[ var bri = entity.attributes.brightness &&
-	  Math.round(entity.attributes.brightness / 2.55);  if
-		(entity.state === 'on') return (bri ? (bri+"%") : 'On'); else return "Off"; ]]]
-	layout: icon_label
-	show_label: true
-	show_name: true
-	state:
-	  - styles:
-		  card:
-			- '--button-card-light-color-no-temperature': '#FC4445'
-			- border: solid 1px var(--button-card-light-color-no-temperature)
-			- box-shadow: 0px 0px 7px 1px var(--button-card-light-color-no-temperature)
-		  label:
-			- color: var(--button-card-light-color-no-temperature)
-		value: 'on'
-	  - styles:
-		  card:
-			- border: solid 1px var(--primary-color)
-			- box-shadow: none
-		value: 'off'
-	  - icon: mdi:alert
-		label: Lost
-		styles:
-		  card:
-			- border: 'solid 1px #7f7f7f'
-			- box-shadow: none
-		  icon:
-			- color: '#ff0000'
-			- opacity: 0.4
-		  label:
-			- color: '#7f7f7f'
-		  name:
-			- color: '#7f7f7f'
-		value: unavailable
-	styles:
-	  card:
-		- border-radius: 10px
-		- padding: 6px 6px 6px 6px
-		- margin: 0% 0% 0% 0%
-		- '--ha-card-background': rgba(255, 255, 255, 0.07)
-	  grid:
-		- grid-template-areas: '"x i l" "n n n"'
-		- grid-template-rows: 50% auto
-		- grid-template-columns: 30px auto 30px
-	  icon:
-		- width: 70px
-		- padding: 0px 0px 0px 0px
-		- color: var(--button-card-light-color-no-temperature)
-	  label:
-		- font-size: 11px
-		- justify-self: right
-		- padding: 0px 0px 0px 0px
-		- color: var(--secondary-text-color)
-	  name:
-		- justify-self: middle
-		- align-self: end
-		- font-size: 17px
-		- padding: 0px 0px 0px 0px
-		- color: var(--primary-text-color)
-		- white-space: normal
-	tap_action:
-	  action: toggle
+    aspect_ratio: 4/3
+    color_type: icon
+    hold_action:
+      action: more-info
+      haptic: selection
+    label: >
+      [[[ var bri = entity.attributes.brightness &&
+      Math.round(entity.attributes.brightness / 2.55);  if
+        (entity.state === 'on') return (bri ? (bri+"%") : 'On'); else return "Off"; ]]]
+    layout: icon_label
+    show_label: true
+    show_name: true
+    state:
+      - styles:
+          card:
+            - '--button-card-light-color-no-temperature': '#FC4445'
+            - border: solid 1px var(--button-card-light-color-no-temperature)
+            - box-shadow: 0px 0px 7px 1px var(--button-card-light-color-no-temperature)
+          label:
+            - color: var(--button-card-light-color-no-temperature)
+        value: 'on'
+      - styles:
+          card:
+            - border: solid 1px var(--primary-color)
+            - box-shadow: none
+        value: 'off'
+      - icon: mdi:alert
+        label: Lost
+        styles:
+          card:
+            - border: 'solid 1px #7f7f7f'
+            - box-shadow: none
+          icon:
+            - color: '#ff0000'
+            - opacity: 0.4
+          label:
+            - color: '#7f7f7f'
+          name:
+            - color: '#7f7f7f'
+        value: unavailable
+    styles:
+      card:
+        - border-radius: 10px
+        - padding: 6px 6px 6px 6px
+        - margin: 0% 0% 0% 0%
+        - '--ha-card-background': rgba(255, 255, 255, 0.07)
+      grid:
+        - grid-template-areas: '"x i l" "n n n"'
+        - grid-template-rows: 50% auto
+        - grid-template-columns: 30px auto 30px
+      icon:
+        - width: 70px
+        - padding: 0px 0px 0px 0px
+        - color: var(--button-card-light-color-no-temperature)
+      label:
+        - font-size: 11px
+        - justify-self: right
+        - padding: 0px 0px 0px 0px
+        - color: var(--secondary-text-color)
+      name:
+        - justify-self: middle
+        - align-self: end
+        - font-size: 17px
+        - padding: 0px 0px 0px 0px
+        - color: var(--primary-text-color)
+        - white-space: normal
+    tap_action:
+      action: toggle
